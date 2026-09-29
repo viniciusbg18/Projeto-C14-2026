@@ -38,4 +38,20 @@ public class FilmesTest {
         filmeTeste.setNota(15.0f);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void naoDeveAceitarNotaMenorQueZero() {
+        Filmes filmeTeste = new Filmes(
+                "Filme Teste",
+                2025,
+                8.5f,
+                "Sinopse do filme teste",
+                "Diretor Teste",
+                120,
+                "Livre",
+                "Aventura"
+        );
+
+        filmeTeste.setNota(-1f);
+    }
+
 }
