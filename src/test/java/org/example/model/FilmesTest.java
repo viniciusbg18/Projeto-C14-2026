@@ -55,7 +55,7 @@ public class FilmesTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void naoDeveAceitarDuracaoMenorOuIgualZero(){
+    public void naoDeveAceitarDuracaoMenorQueZero(){
         Filmes filmeTeste = new Filmes(
                 "Filme Teste",
                 2025,
@@ -68,6 +68,22 @@ public class FilmesTest {
         );
 
         filmeTeste.setDuracao(-20);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void naoDeveAceitarDuracaoIgualZero(){
+        Filmes filmeTeste = new Filmes(
+                "Filme Teste",
+                2025,
+                8.5f,
+                "Sinopse do filme teste",
+                "Diretor Teste",
+                120,
+                "Livre",
+                "Aventura"
+        );
+
+        filmeTeste.setDuracao(0);
     }
 
     @Test
