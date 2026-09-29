@@ -54,4 +54,39 @@ public class FilmesTest {
         filmeTeste.setNota(-1f);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void naoDeveAceitarDuracaoMenorOuIgualZero(){
+        Filmes filmeTeste = new Filmes(
+                "Filme Teste",
+                2025,
+                8.5f,
+                "Sinopse do filme teste",
+                "Diretor Teste",
+                120,
+                "Livre",
+                "Aventura"
+        );
+
+        filmeTeste.setDuracao(-20);
+    }
+
+    @Test
+    public void deveAceitarDuracaoValida(){
+        Filmes filmeTeste = new Filmes(
+                "Filme Teste",
+                2025,
+                8.5f,
+                "Sinopse do filme teste",
+                "Diretor Teste",
+                120,
+                "Livre",
+                "Aventura"
+        );
+
+        filmeTeste.setDuracao(150);
+
+        assertEquals(150, filmeTeste.getDuracao());
+
+    }
+
 }
