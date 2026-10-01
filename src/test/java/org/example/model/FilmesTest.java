@@ -105,4 +105,23 @@ public class FilmesTest {
 
     }
 
+    @Test
+public void deveAlterarNomeDoFilme() {
+
+    Filmes filmeTeste = new Filmes(
+            "Viva a vida é uma festa",
+            2025,
+            8.5f,
+            "Sinopse do filme teste",
+            "Diretor Teste",
+            120,
+            "Livre",
+            "Animação"
+    );
+
+    filmeTeste.setNome("Up: Altas Aventuras");
+
+    assertEquals("Up: Altas Aventuras", filmeTeste.getNome());
+}
+
 }
