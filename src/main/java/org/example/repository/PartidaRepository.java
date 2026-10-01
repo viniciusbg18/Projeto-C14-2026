@@ -1,4 +1,10 @@
 package org.example.repository;
 
-public class PartidaRepository {
+import org.example.model.Partida;
+
+public interface PartidaRepository {
+
+    Partida buscarPorId(int id);
+
+    void salvar(Partida partida);
 }
