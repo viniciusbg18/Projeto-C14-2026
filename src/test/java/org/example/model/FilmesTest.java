@@ -124,4 +124,23 @@ public void deveAlterarNomeDoFilme() {
     assertEquals("Up: Altas Aventuras", filmeTeste.getNome());
 }
 
+    @Test
+    public void deveAlterarAnoLancamentoDoFilme() {
+
+        Filmes filmeTeste = new Filmes(
+                "Filme Teste",
+                2025,
+                8.5f,
+                "Sinopse do filme teste",
+                "Diretor Teste",
+                120,
+                "Livre",
+                "Aventura"
+        );
+
+        filmeTeste.setAnoLancamento(2026);
+
+        assertEquals(2026, filmeTeste.getAnoLancamento());
+    }
+
 }
