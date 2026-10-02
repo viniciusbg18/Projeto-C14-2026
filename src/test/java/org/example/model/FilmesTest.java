@@ -180,4 +180,42 @@ public void deveAlterarNomeDoFilme() {
         assertEquals("Steven Spielberg", filmeTeste.getDiretor());
     }
 
+    @Test
+    public void deveAlterarSinopseDoFilme(){
+        Filmes filmeTeste = new Filmes(
+                "Interestelar",
+                2014,
+                8.7f,
+                "Uma viagem espacial",
+                "Christopher Nolan",
+                169,
+                "12 anos",
+                "Ficção científica"
+        );
+
+        filmeTeste.setSinopse("Uma missão espacial em busca de um novo planeta.");
+
+        assertEquals(
+                "Uma missão espacial em busca de um novo planeta.",
+                filmeTeste.getSinopse()
+        );
+    }
+
+    @Test
+    public void deveAlterarClassificacaoDoFilme(){
+        Filmes filmeteste = new Filmes(
+                "Interestelar",
+                2014,
+                8.7f,
+                "Uma viagem espacial",
+                "Christopher Nolan",
+                169,
+                "12 anos",
+                "Ficção científica"
+        );
+
+        filmeteste.setClassificacao("14 anos");
+
+        assertEquals("14 anos", filmeteste.getClassificacao());
+    }
 }
