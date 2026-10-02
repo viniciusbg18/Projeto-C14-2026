@@ -44,4 +44,35 @@ public class PartidaServiceTest {
 
         verify(repository).salvar(partida);
     }
+
+    @Test
+    public void deveAcumularPontuacaoEmChamadasSucessivas(){
+        Partida partida = new Partida(1);
+
+        PartidaRepository repository = mock(PartidaRepository.class);
+        when(repository.buscarPorId(1)).thenReturn(partida);
+
+        PartidaService service = new PartidaService(repository);
+
+        service.adicionarPontuacao(1, 100);
+        service.adicionarPontuacao(1, 50);
+
+        assertEquals(150, partida.getPontuacaoTotal());
+        verify(repository, times(2)).salvar(partida);
+    }
+
+    @Test
+    public void deveManterPontuacaoAoAdicionarZero(){
+        Partida partida = new Partida(1);
+        partida.adicionarPontuacao(100);
+
+        PartidaRepository repository = mock(PartidaRepository.class);
+        when(repository.buscarPorId(1)).thenReturn(partida);
+
+        PartidaService service = new PartidaService(repository);
+
+        service.adicionarPontuacao(1, 0);
+
+        assertEquals(100, partida.getPontuacaoTotal());
+    }
 }
