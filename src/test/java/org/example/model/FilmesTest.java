@@ -105,4 +105,42 @@ public class FilmesTest {
 
     }
 
+    @Test
+public void deveAlterarNomeDoFilme() {
+
+    Filmes filmeTeste = new Filmes(
+            "Viva a vida é uma festa",
+            2025,
+            8.5f,
+            "Sinopse do filme teste",
+            "Diretor Teste",
+            120,
+            "Livre",
+            "Animação"
+    );
+
+    filmeTeste.setNome("Up: Altas Aventuras");
+
+    assertEquals("Up: Altas Aventuras", filmeTeste.getNome());
+}
+
+    @Test
+    public void deveAlterarAnoLancamentoDoFilme() {
+
+        Filmes filmeTeste = new Filmes(
+                "Filme Teste",
+                2025,
+                8.5f,
+                "Sinopse do filme teste",
+                "Diretor Teste",
+                120,
+                "Livre",
+                "Aventura"
+        );
+
+        filmeTeste.setAnoLancamento(2026);
+
+        assertEquals(2026, filmeTeste.getAnoLancamento());
+    }
+
 }
