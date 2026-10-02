@@ -143,4 +143,41 @@ public void deveAlterarNomeDoFilme() {
         assertEquals(2026, filmeTeste.getAnoLancamento());
     }
 
+    @Test
+    public void deveAlterarGeneroDoFilme() {
+
+        Filmes filmeTeste = new Filmes(
+                "Interestelar",
+                2014,
+                8.7f,
+                "Uma viagem espacial",
+                "Christopher Nolan",
+                169,
+                "12 anos",
+                "Ficção científica"
+        );
+
+        filmeTeste.setGenero("Drama");
+
+        assertEquals("Drama", filmeTeste.getGenero());
+    }
+
+    @Test
+    public void deveAlterarDiretorDoFilme() {
+        Filmes filmeTeste = new Filmes(
+                "Interestelar",
+                2014,
+                8.7f,
+                "Uma viagem espacial",
+                "Christopher Nolan",
+                169,
+                "12 anos",
+                "Ficção científica"
+        );
+
+        filmeTeste.setDiretor("Steven Spielberg");
+
+        assertEquals("Steven Spielberg", filmeTeste.getDiretor());
+    }
+
 }
