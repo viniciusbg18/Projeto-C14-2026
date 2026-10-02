@@ -4,6 +4,7 @@ import org.example.model.Partida;
 import org.example.repository.PartidaRepository;
 import org.example.service.PartidaService;
 import org.junit.Test;
+import static org.junit.Assert.assertNull;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -74,5 +75,36 @@ public class PartidaServiceTest {
         service.adicionarPontuacao(1, 0);
 
         assertEquals(100, partida.getPontuacaoTotal());
+    }
+
+    @Test
+    public void deveRetornarNullQuandoPartidaNaoExiste() {
+
+        // Arrange
+        PartidaRepository repository = mock(PartidaRepository.class);
+
+        when(repository.buscarPorId(999)).thenReturn(null);
+
+        PartidaService service = new PartidaService(repository);
+
+        // Act
+        Partida resultado = service.buscarPartida(999);
+
+        // Assert
+        assertNull(resultado);
+
+        verify(repository).buscarPorId(999);
+    }
+
+    @Test
+    public void deveBuscarPartidaApenasUmaVez() {
+
+        PartidaRepository repository = mock(PartidaRepository.class);
+
+        PartidaService service = new PartidaService(repository);
+
+        service.buscarPartida(1);
+
+        verify(repository, times(1)).buscarPorId(1);
     }
 }
