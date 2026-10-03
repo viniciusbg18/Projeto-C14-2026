@@ -32,4 +32,14 @@ public class RodadaTest {
         // Assert
         assertEquals(93.0, rodada.getPontuacao(), 0.01);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void naoDeveAceitarPalpiteMaiorQueDez() {
+        // Arrange
+        Filmes filme = criarFilme();
+        Rodada rodada = new Rodada(1, filme);
+
+        // Act
+        rodada.fazerPalpite(15.0);
+    }
 }
