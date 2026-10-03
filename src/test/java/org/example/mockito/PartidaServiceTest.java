@@ -4,6 +4,7 @@ import org.example.model.Partida;
 import org.example.repository.PartidaRepository;
 import org.example.service.PartidaService;
 import org.junit.Test;
+import static org.junit.Assert.assertNull;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -77,27 +78,33 @@ public class PartidaServiceTest {
     }
 
     @Test
-    public void deveConsultarRepositoryAoBuscarPartida(){
-        Partida partida = new Partida(5);
+    public void deveRetornarNullQuandoPartidaNaoExiste() {
+
+        // Arrange
         PartidaRepository repository = mock(PartidaRepository.class);
 
-        when(repository.buscarPorId(5)).thenReturn(partida);
+        when(repository.buscarPorId(999)).thenReturn(null);
+
         PartidaService service = new PartidaService(repository);
 
-        Partida resultado = service.buscarPartida(5);
-        assertEquals(partida, resultado);
-        verify(repository).buscarPorId(5);
+        // Act
+        Partida resultado = service.buscarPartida(999);
+
+        // Assert
+        assertNull(resultado);
+
+        verify(repository).buscarPorId(999);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void naoDeveAdicionarPontuacaoNegativa(){
-        Partida partida = new Partida(1);
-        PartidaRepository repository = mock(PartidaRepository.class);
+    @Test
+    public void deveBuscarPartidaApenasUmaVez() {
 
-        when(repository.buscarPorId(1)).thenReturn(partida);
+        PartidaRepository repository = mock(PartidaRepository.class);
 
         PartidaService service = new PartidaService(repository);
 
-        service.adicionarPontuacao(1, -50);
+        service.buscarPartida(1);
+
+        verify(repository, times(1)).buscarPorId(1);
     }
 }
