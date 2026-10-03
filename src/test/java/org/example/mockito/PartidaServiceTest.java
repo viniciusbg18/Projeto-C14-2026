@@ -75,4 +75,29 @@ public class PartidaServiceTest {
 
         assertEquals(100, partida.getPontuacaoTotal());
     }
+
+    @Test
+    public void deveConsultarRepositoryAoBuscarPartida(){
+        Partida partida = new Partida(5);
+        PartidaRepository repository = mock(PartidaRepository.class);
+
+        when(repository.buscarPorId(5)).thenReturn(partida);
+        PartidaService service = new PartidaService(repository);
+
+        Partida resultado = service.buscarPartida(5);
+        assertEquals(partida, resultado);
+        verify(repository).buscarPorId(5);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void naoDeveAdicionarPontuacaoNegativa(){
+        Partida partida = new Partida(1);
+        PartidaRepository repository = mock(PartidaRepository.class);
+
+        when(repository.buscarPorId(1)).thenReturn(partida);
+
+        PartidaService service = new PartidaService(repository);
+
+        service.adicionarPontuacao(1, -50);
+    }
 }
